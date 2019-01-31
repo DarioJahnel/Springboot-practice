@@ -1,0 +1,9 @@
+server:
+  port: 1000
+  
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  datacenter: Buenos Aires
+  environment: Local
