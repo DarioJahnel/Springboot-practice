@@ -34,9 +34,9 @@ public class StaffService implements IStaffService{
 	}
 
 	@Override
-	public Staff getStaffByDocumentNumber(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Staff getStaffByDocumentNumber(String documentNumber) {
+		
+		return staffRepository.findByDocumentNumber(documentNumber);
 	}
 
 	@Override
@@ -46,8 +46,13 @@ public class StaffService implements IStaffService{
 	}
 
 	@Override
-	public Staff updateStaff(Staff staff) {
-		// TODO Auto-generated method stub
+	public Staff updateStaff(Staff updatedStaff, String documentNumber) {
+		Staff dbStaff = staffRepository.findByDocumentNumber(documentNumber);
+		if(dbStaff != null) {
+			updatedStaff.setId(dbStaff.getId());
+			staffRepository.save(updatedStaff);
+			return updatedStaff;
+		}
 		return null;
 	}
 

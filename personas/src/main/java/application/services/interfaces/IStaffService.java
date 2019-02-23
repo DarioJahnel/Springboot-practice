@@ -8,9 +8,9 @@ public interface IStaffService {
 	
 	public List<Staff> getAllStaff();
 	public Staff getStaffById(Long id);
-	public Staff getStaffByDocumentNumber(Long id);
+	public Staff getStaffByDocumentNumber(String documentNumber);
 	public Staff saveStaff(Staff staff);
-	public Staff updateStaff(Staff staff);
+	public Staff updateStaff(Staff updatedStaff, String documentNumber);
 	public List<Staff> deleteStaffById(Long id);
 	
 

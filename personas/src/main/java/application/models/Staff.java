@@ -13,13 +13,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "staff")
-public class Staff extends Person{
+public class Staff {
 	
 	@Id
 	@GeneratedValue
 	Long id;
-	String DocumentNumber;
-	String DocumentType;
+	String documentNumber;
+	String documentType;
 	String name;
 	String surname;
 	String email;
@@ -39,19 +39,19 @@ public class Staff extends Person{
 	}
 
 	public String getDocumentNumber() {
-		return DocumentNumber;
+		return documentNumber;
 	}
 
 	public void setDocumentNumber(String documentNumber) {
-		DocumentNumber = documentNumber;
+		documentNumber = documentNumber;
 	}
 
 	public String getDocumentType() {
-		return DocumentType;
+		return documentType;
 	}
 
 	public void setDocumentType(String documentType) {
-		DocumentType = documentType;
+		documentType = documentType;
 	}
 
 	public String getName() {
