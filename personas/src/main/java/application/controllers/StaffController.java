@@ -2,6 +2,9 @@ package application.controllers;
 
 import java.util.List;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +23,11 @@ public class StaffController {
 	IStaffService staffService;
 	
 	@GetMapping("/getAll")
+	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<?> getAllStaff(){
 		
-//		List<Staff> response = staffService.getAllStaff();
-		Staff response = staffService.getStaffById(1L);
+		List<Staff> response = staffService.getAllStaff();
+//		Staff response = staffService.getStaffById(1L);
 		
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);

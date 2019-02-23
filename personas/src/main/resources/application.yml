@@ -10,9 +10,10 @@ spring:
     username: root
     password: sqlpassword
   jpa:
+    show-sql: true
     hibernate:
-      ddl-auto: create
-      
+     ddl-auto: update
+        
 eureka:
   client:
     serviceUrl:
@@ -24,3 +25,5 @@ eureka:
     instance-id: ${spring.application.name}:${random.int}
 server:
   port: 1001
+  
+  
