@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication(scanBasePackages = "models.Person.class")
+@SpringBootApplication(scanBasePackages = "application.*")
 @EnableDiscoveryClient
 @EnableEurekaClient
 public class PersonasApplication {
