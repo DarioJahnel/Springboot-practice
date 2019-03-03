@@ -25,6 +25,7 @@ public class Staff {
 	String email;
 	String phoneNumber;
 	Date birthDate;
+	Boolean deleted;
 
 	public Staff() {
 		// TODO Auto-generated constructor stub
@@ -43,7 +44,7 @@ public class Staff {
 	}
 
 	public void setDocumentNumber(String documentNumber) {
-		documentNumber = documentNumber;
+		this.documentNumber = documentNumber;
 	}
 
 	public String getDocumentType() {
@@ -51,7 +52,7 @@ public class Staff {
 	}
 
 	public void setDocumentType(String documentType) {
-		documentType = documentType;
+		this.documentType = documentType;
 	}
 
 	public String getName() {
@@ -92,6 +93,14 @@ public class Staff {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	
