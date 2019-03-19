@@ -21,6 +21,17 @@
 
 	<dependencies>
 	
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		
+		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+		<dependency>
+		    <groupId>org.modelmapper</groupId>
+		    <artifactId>modelmapper</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
 		<dependency>
 		    <groupId>org.hibernate.javax.persistence</groupId>
@@ -84,6 +95,12 @@
 <!-- 			<artifactId>spring-security-test</artifactId> -->
 <!-- 			<scope>test</scope> -->
 <!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>repository.org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.15.Final</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 /**
  * @author Dario
@@ -17,15 +20,19 @@ public class Staff {
 	
 	@Id
 	@GeneratedValue
-	Long id;
-	String documentNumber;
-	String documentType;
-	String name;
-	String surname;
-	String email;
-	String phoneNumber;
-	Date birthDate;
-	Boolean deleted;
+	private Long id;
+	
+	@NotNull
+	@Size(min = 6)
+	private String documentNumber;
+	
+	private String documentType;
+	private String name;
+	private String surname;
+	private String email;
+	private String phoneNumber;
+	private Date birthDate;
+	private Boolean deleted;
 
 	public Staff() {
 		// TODO Auto-generated constructor stub
