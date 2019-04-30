@@ -21,6 +21,7 @@ import application.models.repositories.IStaffRepository;
 import application.services.interfaces.IStaffService;
 import dto.StaffDTO;
 import exceptions.ValidationException;
+import utils.validationUtils;
 
 @Qualifier("staffService")
 @Service
@@ -70,16 +71,7 @@ public class StaffService implements IStaffService {
 		Staff staff = modelMapper.map(staffDTO, Staff.class);
 
 		// Validate
-		Set<ConstraintViolation<Staff>> violations = validator.validate(staff);
-		if (violations.size() > 0) {
-
-			ArrayList<String> violationMessages = new ArrayList<String>();
-
-			for (ConstraintViolation<Staff> violation : violations) {
-				violationMessages.add(violation.getMessage());
-			}
-			throw new ValidationException(violationMessages);
-		}
+		validationUtils.validateClass(staff, validator);
 
 		staffRepository.save(staff);
 

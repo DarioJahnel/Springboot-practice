@@ -23,18 +23,18 @@ public class Staff {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull(message = "Document number cannot be null")
-	@Size(min = 6, message = "Document number cannot be less than 6 characters")
+	@NotNull(message = "documentNumber:cannot be null")
+	@Size(min = 6, message = "documentNumber:cannot be less than 6 characters")
 	private String documentNumber;
 
-	@NotNull(message = "Document type cannot be null")
-	@Size(max = 4, message = "Document type cannot be more than 4 characters")
+	@NotNull(message = "documentType:cannot be null")
+	@Size(max = 4, message = "documentType:cannot have more than 4 characters")
 	private String documentType;
 
 	private String name;
 	private String surname;
 
-	@Email(message = "Email should be valid")
+	@Email(message = "email:has to be valid")
 	private String email;
 
 	private String phoneNumber;
