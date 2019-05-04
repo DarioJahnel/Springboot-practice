@@ -45,6 +45,15 @@ public class StaffController {
 
 	}
 
+	@GetMapping("/getAllNonDeleted")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<?> getAllNonDeletedStaff() {
+
+		List<StaffDTO> response = staffService.getAllNonDeletedStaff();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
+	}
+
 	@GetMapping("/get/{documentNumber}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<?> getByDocumentNumber(@PathVariable String documentNumber) {
@@ -88,6 +97,10 @@ public class StaffController {
 	public ResponseEntity<?> deleteStaff(@PathVariable String documentNumber) {
 
 		StaffDTO response = staffService.deleteStaffByDocumentNumber(documentNumber);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		if (response != null) {
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Staff does not exist", HttpStatus.BAD_REQUEST);
+		}
 	}
 }

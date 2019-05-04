@@ -8,6 +8,8 @@ import exceptions.ValidationException;
 public interface IStaffService {
 
 	public List<StaffDTO> getAllStaff();
+	
+	public List<StaffDTO> getAllNonDeletedStaff();
 
 	public StaffDTO getStaffById(Long id);
 

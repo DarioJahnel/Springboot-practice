@@ -46,6 +46,15 @@ public class StaffService implements IStaffService {
 	}
 
 	@Override
+	public List<StaffDTO> getAllNonDeletedStaff() {
+		List<Staff> dbResponse = staffRepository.findAllNonDeletedStaff();
+		List<StaffDTO> dtoResponse = modelMapper.map(dbResponse, new TypeToken<List<StaffDTO>>() {
+		}.getType());
+
+		return dtoResponse;
+	}
+
+	@Override
 	public StaffDTO getStaffById(Long id) {
 		Optional<Staff> optStaff = staffRepository.findById(id);
 		if (optStaff.isPresent()) {
@@ -72,7 +81,7 @@ public class StaffService implements IStaffService {
 
 		// Validate
 		validationUtils.validateClass(staff, validator);
-
+		staff.setDeleted(false);
 		staffRepository.save(staff);
 
 		return staffDTO;
@@ -97,7 +106,7 @@ public class StaffService implements IStaffService {
 	@Override
 	public StaffDTO deleteStaffByDocumentNumber(String documentNumber) {
 		Staff dbStaff = staffRepository.findByDocumentNumber(documentNumber);
-		if (dbStaff != null) {
+		if (dbStaff != null && dbStaff.getDeleted() == false) {
 			dbStaff.setDeleted(true);
 			staffRepository.save(dbStaff);
 
@@ -107,5 +116,4 @@ public class StaffService implements IStaffService {
 		}
 		return null;
 	}
-
 }
