@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import application.services.interfaces.IStaffService;
 import dto.StaffDTO;
+import dto.StaffGridDTO;
 import exceptions.ValidationException;
 
 @RestController
@@ -53,6 +55,15 @@ public class StaffController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
+	
+	@GetMapping("/getAllGridNonDeleted")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<?> getAllGridNonDeletedStaff() {
+
+		List<StaffGridDTO> response = staffService.getAllGridNonDeletedStaff();
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
+	}
 
 	@GetMapping("/get/{documentNumber}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -63,7 +74,6 @@ public class StaffController {
 	}
 
 	@PostMapping("/create")
-	@Transactional
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<?> createStaff(@RequestBody StaffDTO staffDTO) throws ValidationException {
 
@@ -74,6 +84,8 @@ public class StaffController {
 
 		} catch (ValidationException e) {
 			return new ResponseEntity<>(e.getMessages(), HttpStatus.BAD_REQUEST);
+		} catch (DataIntegrityViolationException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 
 		return new ResponseEntity<>(response, HttpStatus.OK);

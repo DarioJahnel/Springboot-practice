@@ -20,6 +20,7 @@ import application.models.Staff;
 import application.models.repositories.IStaffRepository;
 import application.services.interfaces.IStaffService;
 import dto.StaffDTO;
+import dto.StaffGridDTO;
 import exceptions.ValidationException;
 import utils.validationUtils;
 
@@ -55,6 +56,15 @@ public class StaffService implements IStaffService {
 	}
 
 	@Override
+	public List<StaffGridDTO> getAllGridNonDeletedStaff() {
+		List<Staff> dbResponse = staffRepository.findAllNonDeletedStaff();
+		List<StaffGridDTO> dtoResponse = modelMapper.map(dbResponse, new TypeToken<List<StaffGridDTO>>() {
+		}.getType());
+
+		return dtoResponse;
+	}
+
+	@Override
 	public StaffDTO getStaffById(Long id) {
 		Optional<Staff> optStaff = staffRepository.findById(id);
 		if (optStaff.isPresent()) {
@@ -67,9 +77,12 @@ public class StaffService implements IStaffService {
 
 	@Override
 	public StaffDTO getStaffByDocumentNumber(String documentNumber) {
-
-		Staff dbStaff = staffRepository.findByDocumentNumber(documentNumber);
-		StaffDTO response = modelMapper.map(dbStaff, StaffDTO.class);
+		
+		StaffDTO response = null;
+		Staff dbStaff = staffRepository.findNonDeletedStaffByDocumentNumber(documentNumber);
+		if(dbStaff != null) {
+			response = modelMapper.map(dbStaff, StaffDTO.class);
+		}
 		return response;
 	}
 
@@ -116,4 +129,5 @@ public class StaffService implements IStaffService {
 		}
 		return null;
 	}
+
 }

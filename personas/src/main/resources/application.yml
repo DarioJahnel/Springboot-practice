@@ -9,6 +9,7 @@ spring:
     url: jdbc:mysql://localhost:3306/staff
     username: root
     password: sqlpassword
+    
   jpa:
     show-sql: true
     hibernate:
